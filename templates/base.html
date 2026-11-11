@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}TechFix{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="../static/css/style.css">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- MENU LATERAL -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>Tech<span>Fix</span></h2>
+                <p>Gestão de Assistência Técnica</p>
+            </div>
+
+            <nav class="menu">
+
+                <a href="{{ url_for('inicio') }}" class="menu-item">
+                    Dashboard
+                </a>
+
+                <div class="menu-section">
+                    <p>GERENCIAMENTO</p>
+
+                    <a href="{{ url_for('listar_clientes') }}"
+                       class="menu-item">
+                        Clientes
+                    </a>
+
+                    <a href="{{ url_for('listar_aparelhos') }}"
+                       class="menu-item">
+                        Aparelhos
+                    </a>
+                </div>
+
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>TechFix</p>
+                <span>Sistema de Gestão</span>
+            </div>
+
+        </aside>
+
+
+        <!-- ÁREA PRINCIPAL -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+                    <p>Sistema de gestão para assistência técnica</p>
+                </div>
+            </header>
+
+            <section class="content">
+
+                {% block content %}
+
+                {% endblock %}
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../static/js/script.js"></script>
+
+</body>
+</html>

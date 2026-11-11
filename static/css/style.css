@@ -1,0 +1,580 @@
+
+/* ==========================================
+   1. CONFIGURAÇÕES GERAIS
+========================================== */
+
+:root {
+    --cor-primaria: #2563EB;
+    --cor-primaria-hover: #1D4ED8;
+
+    --cor-sidebar: #1E293B;
+    --cor-sidebar-texto: #CBD5E1;
+
+    --cor-fundo: #F8FAFC;
+    --cor-superficie: #FFFFFF;
+
+    --cor-texto: #1E293B;
+    --cor-texto-secundario: #64748B;
+
+    --cor-borda: #E2E8F0;
+    --cor-sucesso: #16A34A;
+    --cor-erro: #DC2626;
+
+    --largura-sidebar: 250px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+
+/* ==========================================
+   2. ESTRUTURA PRINCIPAL
+========================================== */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   3. MENU LATERAL
+========================================== */
+
+.sidebar {
+    width: var(--largura-sidebar);
+    min-height: 100vh;
+    background-color: var(--cor-sidebar);
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+
+    flex-shrink: 0;
+}
+
+.logo {
+    padding: 0 10px 32px;
+    border-bottom: 1px solid #334155;
+}
+
+.logo h2 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.logo h2 span {
+    color: #60A5FA;
+}
+
+.logo p {
+    color: #94A3B8;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+
+/* ==========================================
+   4. NAVEGAÇÃO
+========================================== */
+
+.menu {
+    margin-top: 30px;
+}
+
+.menu-section {
+    margin-top: 28px;
+}
+
+.menu-section > p {
+    color: #94A3B8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    padding: 0 10px;
+    margin-bottom: 12px;
+}
+
+.menu-item {
+    display: block;
+
+    color: var(--cor-sidebar-texto);
+    font-size: 14px;
+
+    padding: 12px 14px;
+    margin-bottom: 5px;
+
+    border-radius: 7px;
+
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.menu-item:hover {
+    background-color: #334155;
+    color: white;
+}
+
+.menu-item.active {
+    background-color: var(--cor-primaria);
+    color: white;
+}
+
+
+/* ==========================================
+   5. RODAPÉ DO MENU
+========================================== */
+
+.sidebar-footer {
+    margin-top: auto;
+
+    padding: 20px 10px 0;
+    border-top: 1px solid #334155;
+}
+
+.sidebar-footer p {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.sidebar-footer span {
+    display: block;
+    color: #94A3B8;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+
+/* ==========================================
+   6. ÁREA PRINCIPAL
+========================================== */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* ==========================================
+   7. CABEÇALHO
+========================================== */
+
+.topbar {
+    min-height: 100px;
+    background-color: var(--cor-superficie);
+
+    display: flex;
+    align-items: center;
+
+    padding: 20px 36px;
+
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.topbar h1 {
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.topbar p {
+    color: var(--cor-texto-secundario);
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+
+/* ==========================================
+   8. CONTEÚDO DAS PÁGINAS
+========================================== */
+
+.content {
+    padding: 32px 36px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.content h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.content p {
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   9. ELEMENTOS REUTILIZÁVEIS
+========================================== */
+
+/* Cartões */
+
+.card {
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 22px;
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.03);
+}
+
+/* Botões */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 16px;
+    border: none;
+    border-radius: 7px;
+
+    background-color: var(--cor-primaria);
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+.btn-secondary {
+    background-color: #E2E8F0;
+    color: #334155;
+}
+
+.btn-secondary:hover {
+    background-color: #CBD5E1;
+}
+
+/* Campos de formulário */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 11px 12px;
+
+    border: 1px solid var(--cor-borda);
+    border-radius: 7px;
+
+    background-color: white;
+    color: var(--cor-texto);
+
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Tabelas */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+
+    background-color: white;
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 15px 18px;
+    border-bottom: 1px solid var(--cor-borda);
+    font-size: 13px;
+}
+
+th {
+    background-color: #F8FAFC;
+    color: var(--cor-texto-secundario);
+    font-weight: 700;
+}
+
+tbody tr:hover {
+    background-color: #F8FAFC;
+}
+
+
+/* ==========================================
+   10. RESPONSIVIDADE
+========================================== */
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--cor-texto);
+    font-size: 25px;
+    cursor: pointer;
+    margin-right: 16px;
+}
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+
+        width: var(--largura-sidebar);
+        height: 100vh;
+
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+    }
+
+    body.sidebar-open .sidebar {
+        transform: translateX(0);
+    }
+
+    body.sidebar-open::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background-color: rgba(15, 23, 42, 0.5);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .topbar {
+        min-height: 85px;
+        padding: 18px 20px;
+    }
+
+    .topbar h1 {
+        font-size: 20px;
+    }
+
+    .content {
+        padding: 24px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .topbar p {
+        font-size: 11px;
+    }
+
+    .content {
+        padding: 20px 14px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}
+
+/* ==========================================
+   11. DASHBOARD
+========================================== */
+
+.dashboard-welcome {
+    margin-bottom: 28px;
+}
+
+.dashboard-welcome h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.dashboard-welcome p {
+    color: var(--cor-texto-secundario);
+    font-size: 14px;
+}
+
+
+/* Indicadores */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 36px;
+}
+
+.dashboard-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.dashboard-card-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #DBEAFE;
+    border-radius: 10px;
+    font-size: 23px;
+}
+
+.appliance-icon {
+    background-color: #DCFCE7;
+}
+
+.dashboard-card-label {
+    color: var(--cor-texto-secundario);
+    font-size: 13px;
+}
+
+.dashboard-card h3 {
+    font-size: 27px;
+    margin: 7px 0;
+}
+
+.dashboard-card-info {
+    color: var(--cor-texto-secundario);
+    font-size: 11px;
+}
+
+
+/* Acesso rápido */
+
+.dashboard-section {
+    margin-bottom: 32px;
+}
+
+.dashboard-section-header {
+    margin-bottom: 18px;
+}
+
+.dashboard-section-header h2 {
+    font-size: 19px;
+    margin-bottom: 5px;
+}
+
+.dashboard-section-header p {
+    color: var(--cor-texto-secundario);
+    font-size: 13px;
+}
+
+.dashboard-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.dashboard-action {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.dashboard-action:hover {
+    transform: translateY(-2px);
+    border-color: var(--cor-primaria);
+}
+
+.action-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.dashboard-action h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.dashboard-action p {
+    color: var(--cor-texto-secundario);
+    font-size: 12px;
+}
+
+.action-arrow {
+    margin-left: auto;
+    color: var(--cor-primaria);
+    font-size: 20px;
+}
+
+
+/* Sobre o sistema */
+
+.dashboard-footer-card h2 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.dashboard-footer-card p {
+    color: var(--cor-texto-secundario);
+    font-size: 13px;
+}
+
+
+/* Responsividade do dashboard */
+
+@media (max-width: 768px) {
+
+    .dashboard-grid,
+    .dashboard-actions {
+        grid-template-columns: 1fr;
+    }
+
+}

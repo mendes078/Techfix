@@ -1,0 +1,169 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard | TechFix{% endblock %}
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- APRESENTAÇÃO -->
+<section class="dashboard-welcome">
+    <h2>Bem-vindo ao TechFix!</h2>
+
+    <p>
+        Gerencie seus clientes e aparelhos em um só lugar.
+        Utilize o painel para organizar as informações da
+        sua assistência técnica.
+    </p>
+</section>
+
+
+<!-- INDICADORES -->
+<section class="dashboard-grid">
+
+    <div class="card dashboard-card">
+        <div class="dashboard-card-icon">
+            <span>👥</span>
+        </div>
+
+        <div>
+            <p class="dashboard-card-label">
+                Clientes cadastrados
+            </p>
+
+            <h3>—</h3>
+
+            <span class="dashboard-card-info">
+                Aguardando integração com o banco de dados
+            </span>
+        </div>
+    </div>
+
+
+    <div class="card dashboard-card">
+        <div class="dashboard-card-icon appliance-icon">
+            <span>🔧</span>
+        </div>
+
+        <div>
+            <p class="dashboard-card-label">
+                Aparelhos cadastrados
+            </p>
+
+            <h3>—</h3>
+
+            <span class="dashboard-card-info">
+                Aguardando integração com o banco de dados
+            </span>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- ACESSO RÁPIDO -->
+<section class="dashboard-section">
+
+    <div class="dashboard-section-header">
+        <h2>Acesso rápido</h2>
+
+        <p>
+            Acesse diretamente as principais funcionalidades.
+        </p>
+    </div>
+
+
+    <div class="dashboard-actions">
+
+        <a href="{{ url_for('cadastrar_cliente') }}"
+           class="card dashboard-action">
+
+            <span class="action-icon">➕</span>
+
+            <div>
+                <h3>Cadastrar cliente</h3>
+
+                <p>
+                    Adicione um novo cliente ao sistema.
+                </p>
+            </div>
+
+            <span class="action-arrow">→</span>
+
+        </a>
+
+
+        <a href="{{ url_for('cadastrar_aparelho') }}"
+           class="card dashboard-action">
+
+            <span class="action-icon">🔧</span>
+
+            <div>
+                <h3>Cadastrar aparelho</h3>
+
+                <p>
+                    Registre um aparelho vinculado a um cliente.
+                </p>
+            </div>
+
+            <span class="action-arrow">→</span>
+
+        </a>
+
+
+        <a href="{{ url_for('listar_clientes') }}"
+           class="card dashboard-action">
+
+            <span class="action-icon">📋</span>
+
+            <div>
+                <h3>Consultar clientes</h3>
+
+                <p>
+                    Visualize os clientes cadastrados.
+                </p>
+            </div>
+
+            <span class="action-arrow">→</span>
+
+        </a>
+
+
+        <a href="{{ url_for('listar_aparelhos') }}"
+           class="card dashboard-action">
+
+            <span class="action-icon">📱</span>
+
+            <div>
+                <h3>Consultar aparelhos</h3>
+
+                <p>
+                    Visualize os aparelhos registrados.
+                </p>
+            </div>
+
+            <span class="action-arrow">→</span>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- INFORMAÇÕES DO SISTEMA -->
+<section class="dashboard-footer-card card">
+
+    <h2>Sobre o TechFix</h2>
+
+    <p>
+        O TechFix é um sistema de gestão desenvolvido para
+        auxiliar pequenas assistências técnicas na organização
+        de seus clientes e aparelhos, centralizando informações
+        e facilitando sua consulta e atualização.
+    </p>
+
+</section>
+
+{% endblock %}

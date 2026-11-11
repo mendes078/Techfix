@@ -4,7 +4,6 @@ from flask import Flask, render_template
 # Inicialização da aplicação
 app = Flask(__name__)
 
-
 # ==========================================
 # ROTAS PRINCIPAIS
 # ==========================================

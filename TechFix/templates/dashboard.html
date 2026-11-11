@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="dashboard">
+
+    <div class="welcome">
+        <h2>Bem-vindo ao TechFix!</h2>
+        <p>Gerencie sua assistência técnica em um só lugar.</p>
+    </div>
+
+    <!-- CARDS DE INDICADORES -->
+    <div class="cards">
+
+        <div class="card">
+            <span class="card-title">Total de clientes</span>
+            <h2>0</h2>
+            <p>Clientes cadastrados</p>
+        </div>
+
+        <div class="card">
+            <span class="card-title">Aparelhos cadastrados</span>
+            <h2>0</h2>
+            <p>Equipamentos registrados</p>
+        </div>
+
+        <div class="card">
+            <span class="card-title">Ordens de serviço</span>
+            <h2>0</h2>
+            <p>Serviços registrados</p>
+        </div>
+
+        <div class="card">
+            <span class="card-title">Faturamento</span>
+            <h2>R$ 0,00</h2>
+            <p>Valor acumulado</p>
+        </div>
+
+    </div>
+
+    <!-- ATALHOS -->
+    <div class="quick-actions">
+
+        <h2>Acessos rápidos</h2>
+
+        <div class="actions">
+
+            <a href="{{ url_for('cadastrar_cliente') }}" class="action-card">
+                <h3>Novo cliente</h3>
+                <p>Cadastre um novo cliente no sistema.</p>
+            </a>
+
+            <a href="{{ url_for('cadastrar_aparelho') }}" class="action-card">
+                <h3>Novo aparelho</h3>
+                <p>Registre um equipamento.</p>
+            </a>
+
+            <a href="{{ url_for('listar_clientes') }}" class="action-card">
+                <h3>Consultar clientes</h3>
+                <p>Visualize os clientes cadastrados.</p>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

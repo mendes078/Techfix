@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TechFix - Sistema de Gestão</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                <h2>TechFix</h2>
+                <span>Gestão de Assistência</span>
+            </div>
+
+
+        <nav class="menu">
+
+            <a href="{{ url_for('inicio') }}"
+            class="{{ 'active' if request.endpoint == 'inicio' else '' }}">
+            Dashboard
+            </a>
+
+            <a href="{{ url_for('listar_clientes') }}"
+            class="{{ 'active' if request.endpoint in ['listar_clientes', 'cadastrar_cliente', 'editar_cliente'] else '' }}">
+            Clientes
+            </a>
+
+            <a href="{{ url_for('listar_aparelhos') }}"
+            class="{{ 'active' if request.endpoint in ['listar_aparelhos', 'cadastrar_aparelho'] else '' }}">
+            Aparelhos
+            </a>
+
+        </nav>
+
+
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <h1>Sistema de Gestão</h1>
+                <span>Painel administrativo</span>
+            </header>
+
+            {% block content %}
+            {% endblock %}
+
+        </main>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

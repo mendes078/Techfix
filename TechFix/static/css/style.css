@@ -1,0 +1,723 @@
+
+/* ==========================================
+   TECHFIX - ESTILIZAÇÃO GERAL
+========================================== */
+
+/* Reset de configurações do navegador */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configurações principais */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #17171f;
+    color: #f5f5f5;
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   ESTRUTURA PRINCIPAL
+========================================== */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+
+/* ==========================================
+   BARRA LATERAL - SIDEBAR
+========================================== */
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    min-height: 100vh;
+
+    background-color: #252333;
+
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Identidade visual */
+
+.logo {
+    margin-bottom: 45px;
+}
+
+.logo h2 {
+    color: #a78bfa;
+    font-size: 26px;
+    font-weight: 700;
+
+    margin-bottom: 5px;
+}
+
+.logo span {
+    color: #aaa7ba;
+    font-size: 12px;
+}
+
+/* Menu de navegação */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.menu a {
+    display: block;
+
+    text-decoration: none;
+    color: #c5c2d3;
+
+    font-size: 14px;
+
+    padding: 13px 15px;
+
+    border-radius: 8px;
+
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu a:hover {
+    background-color: #343047;
+    color: #ffffff;
+}
+
+.menu a.active {
+    background-color: #7c3aed;
+    color: #ffffff;
+}
+
+
+/* ==========================================
+   CONTEÚDO PRINCIPAL
+========================================== */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+
+    padding: 30px 40px;
+
+    background-color: #17171f;
+}
+
+
+/* ==========================================
+   CABEÇALHO SUPERIOR
+========================================== */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+
+    border-bottom: 1px solid #343240;
+}
+
+.topbar h1 {
+    font-size: 23px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.topbar span {
+    color: #aaa7ba;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   ÁREA DO DASHBOARD
+========================================== */
+
+.dashboard {
+    width: 100%;
+}
+
+/* Mensagem de boas-vindas */
+
+.welcome {
+    margin-bottom: 30px;
+}
+
+.welcome h2 {
+    font-size: 25px;
+    font-weight: 600;
+
+    color: #ffffff;
+
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    font-size: 14px;
+    color: #aaa7ba;
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   CARDS DE INDICADORES
+========================================== */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 20px;
+
+    margin-bottom: 40px;
+}
+
+.card {
+    background-color: #252333;
+
+    border: 1px solid #343240;
+    border-radius: 12px;
+
+    padding: 25px;
+
+    min-width: 0;
+
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: #7c3aed;
+}
+
+.card-title {
+    display: block;
+
+    color: #aaa7ba;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.card h2 {
+    color: #a78bfa;
+
+    font-size: 27px;
+    font-weight: 700;
+
+    margin: 18px 0 8px;
+}
+
+.card p {
+    color: #858195;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   ÁREA DE ACESSOS RÁPIDOS
+========================================== */
+
+.quick-actions {
+    width: 100%;
+}
+
+.quick-actions h2 {
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+/* Organização dos atalhos */
+
+.actions {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 20px;
+}
+
+/* Cards de acesso */
+
+.action-card {
+    display: block;
+
+    background-color: #252333;
+
+    border: 1px solid #343240;
+    border-radius: 12px;
+
+    padding: 25px;
+
+    color: #ffffff;
+    text-decoration: none;
+
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+    border-color: #7c3aed;
+}
+
+.action-card h3 {
+    color: #a78bfa;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.action-card p {
+    color: #aaa7ba;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE - TABLETS
+========================================== */
+
+@media (max-width: 1100px) {
+
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .main-content {
+        padding: 30px;
+    }
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE - CELULARES
+========================================== */
+
+@media (max-width: 700px) {
+
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        min-height: auto;
+
+        padding: 20px;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+    }
+
+    .menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .menu a {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .main-content {
+        padding: 25px 20px;
+    }
+
+    .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .topbar h1 {
+        font-size: 21px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+
+    .welcome h2 {
+        font-size: 22px;
+    }
+}
+
+
+/* ==========================================
+   PÁGINA DE CLIENTES
+========================================== */
+
+.clientes {
+    width: 100%;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.page-header h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: #aaa7ba;
+    font-size: 14px;
+}
+
+/* Botão principal */
+
+.btn-primary {
+    display: inline-block;
+    background-color: #7c3aed;
+    color: #ffffff;
+
+    padding: 12px 18px;
+    border-radius: 8px;
+
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #6d28d9;
+}
+
+/* Pesquisa */
+
+.search-area {
+    margin-bottom: 20px;
+}
+
+.search-area input {
+    width: 100%;
+    max-width: 400px;
+
+    padding: 13px 15px;
+
+    background-color: #252333;
+    border: 1px solid #343240;
+    border-radius: 8px;
+
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-area input:focus {
+    border-color: #7c3aed;
+}
+
+.search-area input::placeholder {
+    color: #858195;
+}
+
+/* Tabela */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+
+    background-color: #252333;
+    border: 1px solid #343240;
+    border-radius: 12px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+thead {
+    background-color: #302d40;
+}
+
+th, td {
+    padding: 18px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #343240;
+}
+
+th {
+    color: #a78bfa;
+    font-weight: 600;
+}
+
+td {
+    color: #d5d2df;
+}
+
+.empty-message {
+    text-align: center;
+    color: #858195;
+    padding: 35px;
+}
+
+/* Responsividade */
+
+@media (max-width: 700px) {
+    .page-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .btn-primary {
+        width: 100%;
+        text-align: center;
+    }
+
+    .search-area input {
+        max-width: 100%;
+    }
+}
+
+
+/* ==========================================
+   FORMULÁRIO DE CADASTRO
+========================================== */
+
+.cadastro {
+    width: 100%;
+}
+
+.form-container {
+    max-width: 700px;
+
+    background-color: #252333;
+
+    border: 1px solid #343240;
+    border-radius: 12px;
+
+    padding: 30px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    color: #d5d2df;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+
+    background-color: #17171f;
+    border: 1px solid #343240;
+    border-radius: 8px;
+
+    padding: 13px 15px;
+
+    color: #ffffff;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-color: #7c3aed;
+}
+
+.form-group input::placeholder {
+    color: #858195;
+}
+
+/* Botões do formulário */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #7c3aed;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #6d28d9;
+}
+
+.btn-secondary {
+    background-color: #343240;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #454153;
+}
+
+/* Mensagem de erro */
+
+.error-message {
+    background-color: #49252b;
+    color: #ffb4bd;
+
+    padding: 13px 15px;
+    margin-bottom: 22px;
+
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+@media (max-width: 700px) {
+
+    .form-container {
+        padding: 20px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .form-actions a,
+    .form-actions button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* ==========================================
+   PESQUISA SEM RESULTADOS
+========================================== */
+
+.no-results-row td {
+    text-align: center;
+    color: #858195;
+    padding: 35px;
+}
+
+
+/* ==========================================
+   AÇÕES DA TABELA DE CLIENTES
+========================================== */
+
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-actions form {
+    margin: 0;
+}
+
+.btn-edit,
+.btn-delete {
+    display: inline-block;
+
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: background-color 0.3s;
+}
+
+/* Botão editar */
+
+.btn-edit {
+    background-color: #343047;
+    color: #c4b5fd;
+}
+
+.btn-edit:hover {
+    background-color: #493d6b;
+}
+
+/* Botão excluir */
+
+.btn-delete {
+    background-color: #49252b;
+    color: #ffb4bd;
+}
+
+.btn-delete:hover {
+    background-color: #6b2935;
+}
+
+/* Ajuste para telas menores */
+
+@media (max-width: 700px) {
+
+    .table-actions {
+        flex-wrap: wrap;
+    }
+
+}

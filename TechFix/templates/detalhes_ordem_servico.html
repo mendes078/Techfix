@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="form-section">
+
+    <div class="page-header">
+        <div>
+            <h2>Ordem de Serviço #{{ ordem.id_os }}</h2>
+            <p>Detalhes completos do atendimento.</p>
+        </div>
+
+        <div class="form-actions">
+            <a href="{{ url_for('listar_ordens_servico') }}"
+               class="btn-secondary">
+                Voltar
+            </a>
+
+            <a href="{{ url_for('editar_ordem_servico', id_os=ordem.id_os) }}"
+               class="btn-primary">
+                Editar OS
+            </a>
+        </div>
+    </div>
+
+    {% set classes_status = {
+        'Aguardando avaliação': 'status-pendente',
+        'Em diagnóstico': 'status-diagnostico',
+        'Aguardando aprovação': 'status-aprovacao',
+        'Aguardando peças': 'status-pecas',
+        'Em conserto': 'status-conserto',
+        'Concluído': 'status-concluido',
+        'Entregue': 'status-entregue',
+        'Cancelado': 'status-cancelado'
+    } %}
+
+    <div class="form-container">
+
+        <div class="form-group">
+            <label>Status da ordem</label>
+            <p>
+                <span class="status-badge {{ classes_status.get(ordem.status, 'status-pendente') }}">
+                    {{ ordem.status }}
+                </span>
+            </p>
+        </div>
+
+        <h3>Informações do cliente</h3>
+
+        <div class="form-group">
+            <label>Nome</label>
+            <p>{{ ordem.nome_cliente }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Telefone</label>
+            <p>{{ ordem.telefone }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>E-mail</label>
+            <p>{{ ordem.email or 'Não informado' }}</p>
+        </div>
+
+        <h3>Informações do aparelho</h3>
+
+        <div class="form-group">
+            <label>Tipo</label>
+            <p>{{ ordem.tipo }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Marca e modelo</label>
+            <p>{{ ordem.marca }} {{ ordem.modelo }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Número de série</label>
+            <p>{{ ordem.numero_serie or 'Não informado' }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Descrição do aparelho</label>
+            <p>{{ ordem.descricao_aparelho or 'Não informado' }}</p>
+        </div>
+
+        <h3>Informações do serviço</h3>
+
+        <div class="form-group">
+            <label>Defeito relatado</label>
+            <p>{{ ordem.defeito_relatado }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Diagnóstico técnico</label>
+            <p>{{ ordem.diagnostico or 'Ainda não informado' }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Valor do serviço</label>
+            <p>R$ {{ "%.2f"|format(ordem.valor_servico) }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Data de abertura</label>
+            <p>{{ ordem.data_abertura }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Data de conclusão</label>
+            <p>{{ ordem.data_conclusao or 'Ainda não concluído' }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Observações</label>
+            <p>{{ ordem.observacoes or 'Nenhuma observação registrada.' }}</p>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -165,3 +165,136 @@ if (pesquisaCliente && tabelaClientes) {
     });
 
 }
+
+
+// ==========================================
+// PESQUISA DINÂMICA DE APARELHOS
+// ==========================================
+
+const pesquisaAparelho = document.getElementById("pesquisaAparelho");
+const tabelaAparelhos = document.getElementById("tabelaAparelhos");
+
+if (pesquisaAparelho && tabelaAparelhos) {
+
+    const linhas = Array.from(
+        tabelaAparelhos.querySelectorAll("tr")
+    ).filter(linha => !linha.querySelector(".empty-message"));
+
+    pesquisaAparelho.addEventListener("input", function () {
+
+        const termo = pesquisaAparelho.value
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+
+        let resultadosEncontrados = 0;
+
+        linhas.forEach(linha => {
+
+            const textoAparelho = linha.textContent
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+
+            if (textoAparelho.includes(termo)) {
+
+                linha.style.display = "";
+                resultadosEncontrados++;
+
+            } else {
+
+                linha.style.display = "none";
+
+            }
+
+        });
+
+        let mensagem = tabelaAparelhos.querySelector(".no-results-row");
+
+        if (resultadosEncontrados === 0 && linhas.length > 0) {
+
+            if (!mensagem) {
+
+                mensagem = document.createElement("tr");
+                mensagem.classList.add("no-results-row");
+
+                mensagem.innerHTML = `
+                    <td colspan="7" class="empty-message">
+                        Nenhum aparelho encontrado.
+                    </td>
+                `;
+
+                tabelaAparelhos.appendChild(mensagem);
+            }
+
+        } else if (mensagem) {
+
+            mensagem.remove();
+
+        }
+
+    });
+
+}
+
+
+const pesquisaOS = document.getElementById("pesquisaOS");
+const tabelaOS = document.getElementById("tabelaOS");
+
+if (pesquisaOS && tabelaOS) {
+
+    const linhas = Array.from(
+        tabelaOS.querySelectorAll("tr")
+    ).filter(linha => !linha.querySelector(".empty-message"));
+
+    pesquisaOS.addEventListener("input", function () {
+
+        const termo = pesquisaOS.value
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .trim();
+
+        let resultadosEncontrados = 0;
+
+        linhas.forEach(linha => {
+
+            const textoOS = linha.textContent
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "");
+
+            if (textoOS.includes(termo)) {
+                linha.style.display = "";
+                resultadosEncontrados++;
+            } else {
+                linha.style.display = "none";
+            }
+
+        });
+
+        let mensagem = tabelaOS.querySelector(".no-results-row");
+
+        if (resultadosEncontrados === 0 && linhas.length > 0) {
+
+            if (!mensagem) {
+                mensagem = document.createElement("tr");
+                mensagem.classList.add("no-results-row");
+
+                mensagem.innerHTML = `
+                    <td colspan="7" class="empty-message">
+                        Nenhuma ordem de serviço encontrada.
+                    </td>
+                `;
+
+                tabelaOS.appendChild(mensagem);
+            }
+
+        } else if (mensagem) {
+            mensagem.remove();
+        }
+
+    });
+
+}

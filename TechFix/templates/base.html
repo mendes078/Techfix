@@ -7,7 +7,7 @@
 
     <title>TechFix - Sistema de Gestão</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2">
 </head>
 
 <body>
@@ -40,6 +40,11 @@
             Aparelhos
             </a>
 
+            <a href="{{ url_for('listar_ordens_servico') }}"
+            class="{{ 'active' if request.endpoint in ['listar_ordens_servico', 'cadastrar_ordem_servico'] else '' }}">
+            Ordens de Serviço
+            </a>
+            
         </nav>
 
 

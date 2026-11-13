@@ -721,3 +721,101 @@ td {
     }
 
 }
+
+/* Campos de seleção e descrição */
+
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    background-color: #17171f;
+    border: 1px solid #343240;
+    border-radius: 8px;
+
+    padding: 13px 15px;
+
+    color: #ffffff;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #7c3aed;
+}
+
+.form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+}
+
+
+.success-message {
+    background-color: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #86efac;
+    padding: 14px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+/* Status das ordens de serviço */
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Aguardando avaliação */
+.status-pendente {
+    background-color: #3b3525;
+    color: #facc15;
+}
+
+/* Em diagnóstico */
+.status-diagnostico {
+    background-color: #292d4a;
+    color: #a5b4fc;
+}
+
+/* Aguardando aprovação */
+.status-aprovacao {
+    background-color: #3d304b;
+    color: #d8b4fe;
+}
+
+/* Aguardando peças */
+.status-pecas {
+    background-color: #453323;
+    color: #fdba74;
+}
+
+/* Em conserto */
+.status-conserto {
+    background-color: #253b4a;
+    color: #7dd3fc;
+}
+
+/* Concluído */
+.status-concluido {
+    background-color: #1e3b30;
+    color: #86efac;
+}
+
+/* Entregue */
+.status-entregue {
+    background-color: #243d36;
+    color: #6ee7b7;
+}
+
+/* Cancelado */
+.status-cancelado {
+    background-color: #482b30;
+    color: #fca5a5;
+}

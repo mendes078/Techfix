@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="cadastro">
+
+    <div class="page-header">
+        <div>
+            <h2>Novo aparelho</h2>
+            <p>Registre um equipamento e vincule-o a um cliente.</p>
+        </div>
+    </div>
+
+    <div class="form-container">
+
+        {% if erro %}
+            <div class="error-message">
+                {{ erro }}
+            </div>
+        {% endif %}
+
+        {% if clientes %}
+
+            <form method="POST">
+
+                <div class="form-group">
+                    <label for="id_cliente">Cliente responsável *</label>
+
+                    <select id="id_cliente" name="id_cliente" required>
+                        <option value="">Selecione um cliente</option>
+
+                        {% for cliente in clientes %}
+                            <option
+                                value="{{ cliente.id_cliente }}"
+                                {% if request.form.get('id_cliente') == cliente.id_cliente|string %}selected{% endif %}
+                            >
+                                {{ cliente.nome }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo">Tipo de aparelho *</label>
+
+                    <select id="tipo" name="tipo" required>
+                        <option value="">Selecione o tipo</option>
+                        <option value="Notebook">Notebook</option>
+                        <option value="Computador">Computador</option>
+                        <option value="Smartphone">Smartphone</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="marca">Marca *</label>
+
+                    <input
+                        type="text"
+                        id="marca"
+                        name="marca"
+                        placeholder="Ex.: Samsung, Dell, Apple"
+                        value="{{ request.form.get('marca', '') }}"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="modelo">Modelo *</label>
+
+                    <input
+                        type="text"
+                        id="modelo"
+                        name="modelo"
+                        placeholder="Ex.: Galaxy S24, Inspiron 15"
+                        value="{{ request.form.get('modelo', '') }}"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="numero_serie">Número de série</label>
+
+                    <input
+                        type="text"
+                        id="numero_serie"
+                        name="numero_serie"
+                        placeholder="Digite o número de série"
+                        value="{{ request.form.get('numero_serie', '') }}"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="descricao">Descrição adicional</label>
+
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        rows="4"
+                        placeholder="Descreva características ou observações do aparelho..."
+                    >{{ request.form.get('descricao', '') }}</textarea>
+                </div>
+
+                <div class="form-actions">
+
+                    <a href="{{ url_for('listar_aparelhos') }}" class="btn-secondary">
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="btn-primary">
+                        Salvar aparelho
+                    </button>
+
+                </div>
+
+            </form>
+
+        {% else %}
+
+            <div class="error-message">
+                Não existem clientes cadastrados. Cadastre um cliente antes de registrar um aparelho.
+            </div>
+
+            <a href="{{ url_for('cadastrar_cliente') }}" class="btn-primary">
+                Cadastrar cliente
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="clientes">
+
+    <div class="page-header">
+        <div>
+            <h2>Aparelhos</h2>
+            <p>Gerencie os equipamentos cadastrados na assistência técnica.</p>
+        </div>
+
+        <a href="{{ url_for('cadastrar_aparelho') }}" class="btn-primary">
+            + Novo aparelho
+        </a>
+    </div>
+
+    <div class="search-area">
+        <input
+            type="text"
+            id="pesquisaAparelho"
+            placeholder="Pesquisar aparelho..."
+        >
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cliente</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Número de série</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabelaAparelhos">
+
+                {% for aparelho in aparelhos %}
+
+                    <tr>
+                        <td>{{ aparelho.id_aparelho }}</td>
+
+                        <td>{{ aparelho.nome_cliente }}</td>
+
+                        <td>{{ aparelho.tipo }}</td>
+
+                        <td>{{ aparelho.marca }}</td>
+
+                        <td>{{ aparelho.modelo }}</td>
+
+                        <td>{{ aparelho.numero_serie or '-' }}</td>
+
+                        <td class="table-actions">
+
+                            <a
+                                href="{{ url_for('editar_aparelho', id_aparelho=aparelho.id_aparelho) }}"
+                                class="btn-edit"
+                            >
+                                Editar
+                            </a>
+
+                            <form
+                                action="{{ url_for('excluir_aparelho', id_aparelho=aparelho.id_aparelho) }}"
+                                method="POST"
+                                onsubmit="return confirm('Tem certeza que deseja excluir este aparelho?');"
+                            >
+                                <button type="submit" class="btn-delete">
+                                    Excluir
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="7" class="empty-message">
+                            Nenhum aparelho cadastrado.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

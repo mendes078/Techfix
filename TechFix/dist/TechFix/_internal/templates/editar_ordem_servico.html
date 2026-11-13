@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="form-section">
+
+    <div class="page-header">
+        <div>
+            <h2>Editar Ordem de Serviço #{{ ordem.id_os }}</h2>
+            <p>Atualize as informações do atendimento.</p>
+        </div>
+    </div>
+
+    {% if erro %}
+        <div class="error-message">
+            {{ erro }}
+        </div>
+    {% endif %}
+
+    <div class="form-container">
+
+        <div class="form-group">
+            <label>Cliente</label>
+            <input type="text" value="{{ ordem.nome_cliente }}" disabled>
+        </div>
+
+        <div class="form-group">
+            <label>Aparelho</label>
+            <input
+                type="text"
+                value="{{ ordem.tipo }} - {{ ordem.marca }} {{ ordem.modelo }}"
+                disabled
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Defeito relatado</label>
+            <textarea disabled>{{ ordem.defeito_relatado }}</textarea>
+        </div>
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label for="diagnostico">Diagnóstico técnico</label>
+                <textarea
+                    id="diagnostico"
+                    name="diagnostico"
+                    placeholder="Descreva o diagnóstico..."
+                >{{ ordem.diagnostico or '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status da ordem</label>
+
+                <select id="status" name="status" required>
+                    {% for opcao in [
+                        'Aguardando avaliação',
+                        'Em diagnóstico',
+                        'Aguardando aprovação',
+                        'Aguardando peças',
+                        'Em conserto',
+                        'Concluído',
+                        'Entregue',
+                        'Cancelado'
+                    ] %}
+
+                        <option
+                            value="{{ opcao }}"
+                            {% if ordem.status == opcao %}selected{% endif %}
+                        >
+                            {{ opcao }}
+                        </option>
+
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="valor_servico">Valor do serviço (R$)</label>
+                <input
+                    type="number"
+                    id="valor_servico"
+                    name="valor_servico"
+                    step="0.01"
+                    min="0"
+                    value="{{ ordem.valor_servico }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="data_conclusao">Data de conclusão</label>
+                <input
+                    type="date"
+                    id="data_conclusao"
+                    name="data_conclusao"
+                    value="{{ ordem.data_conclusao[:10] if ordem.data_conclusao else '' }}"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="observacoes">Observações</label>
+                <textarea
+                    id="observacoes"
+                    name="observacoes"
+                    placeholder="Informações adicionais..."
+                >{{ ordem.observacoes or '' }}</textarea>
+            </div>
+
+            <div class="form-actions">
+                <a href="{{ url_for('listar_ordens_servico') }}" class="btn-secondary">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn-primary">
+                    Salvar alterações
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

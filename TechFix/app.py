@@ -1,6 +1,7 @@
 
 import os
 import sqlite3
+import sys
 
 from flask import Flask, render_template, request, redirect, url_for, abort
 from datetime import datetime
@@ -12,7 +13,12 @@ from datetime import datetime
 app = Flask(__name__)
 
 # Caminho do banco de dados
-DATABASE = os.path.join(app.root_path, "techfix.db")
+if getattr(sys, "frozen", False):
+    BASE_DIR = os.path.dirname(sys.executable)
+else:
+    BASE_DIR = app.root_path
+
+DATABASE = os.path.join(BASE_DIR, "techfix.db")
 
 
 # ==========================================

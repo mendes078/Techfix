@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="clientes">
+
+    <div class="page-header">
+        <div>
+            <h2>Ordens de Serviço</h2>
+            <p>Gerencie os atendimentos da assistência técnica.</p>
+        </div>
+
+        <a href="{{ url_for('cadastrar_ordem_servico') }}"
+           class="btn-primary">
+            + Nova ordem de serviço
+        </a>
+    </div>
+
+    <div class="search-area">
+        <input
+            type="text"
+            id="pesquisaOS"
+            placeholder="Pesquisar por cliente, aparelho ou defeito..."
+        >
+    </div>
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>OS</th>
+                    <th>Cliente</th>
+                    <th>Aparelho</th>
+                    <th>Defeito relatado</th>
+                    <th>Data de abertura</th>
+                    <th>Status</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabelaOS">
+
+                {% for ordem in ordens %}
+
+                    <tr>
+
+                        <td>#{{ ordem.id_os }}</td>
+
+                        <td>{{ ordem.nome_cliente }}</td>
+
+                        <td>
+                            {{ ordem.tipo }} -
+                            {{ ordem.marca }}
+                            {{ ordem.modelo }}
+                        </td>
+
+                        <td>{{ ordem.defeito_relatado }}</td>
+
+                        <td>{{ ordem.data_abertura }}</td>
+
+                        <td>
+                            {% set classes_status = {
+                                'Aguardando avaliação': 'status-pendente',
+                                'Em diagnóstico': 'status-diagnostico',
+                                'Aguardando aprovação': 'status-aprovacao',
+                                'Aguardando peças': 'status-pecas',
+                                'Em conserto': 'status-conserto',
+                                'Concluído': 'status-concluido',
+                                'Entregue': 'status-entregue',
+                                'Cancelado': 'status-cancelado'
+                            } %}
+
+                            <span class="status-badge {{ classes_status.get(ordem.status, 'status-pendente') }}">
+                                {{ ordem.status }}
+                            </span>
+                        </td>
+
+                        <td>
+                            R$ {{ "%.2f"|format(ordem.valor_servico) }}
+                        </td>
+
+                        <td>
+                            <a
+                                href="{{ url_for('detalhes_ordem_servico', id_os=ordem.id_os) }}"
+                                class="btn-edit"
+                            >
+                            Visualizar
+                            </a>
+
+                            <a
+                                href="{{ url_for('editar_ordem_servico', id_os=ordem.id_os) }}"
+                                class="btn-edit"
+                            >
+                            Editar
+                            </a>
+                        </td>
+
+                    </tr>
+
+                {% else %}
+
+                    <tr>
+                        <td colspan="8" class="empty-message">
+                            Nenhuma ordem de serviço cadastrada.
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

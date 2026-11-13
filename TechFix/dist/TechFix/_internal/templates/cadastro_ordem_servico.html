@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="cadastro">
+
+    <div class="page-header">
+        <div>
+            <h2>Nova Ordem de Serviço</h2>
+            <p>Registre um novo atendimento na assistência técnica.</p>
+        </div>
+    </div>
+
+    <div class="form-container">
+
+        {% if request.args.get('sucesso') %}
+            <div class="success-message">
+                Ordem de serviço cadastrada com sucesso!
+            </div>
+        {% endif %}
+
+        {% if erro %}
+            <div class="error-message">{{ erro }}</div>
+        {% endif %}
+
+        {% if aparelhos %}
+
+            <form method="POST">
+
+                <div class="form-group">
+                    <label for="id_aparelho">Aparelho *</label>
+
+                    <select id="id_aparelho" name="id_aparelho" required>
+
+                        <option value="">Selecione um aparelho</option>
+
+                        {% for aparelho in aparelhos %}
+
+                            <option
+                                value="{{ aparelho.id_aparelho }}"
+                                {% if request.form.get('id_aparelho') == aparelho.id_aparelho|string %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ aparelho.tipo }} - {{ aparelho.marca }}
+                                {{ aparelho.modelo }} |
+                                Cliente: {{ aparelho.nome_cliente }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="defeito_relatado">Defeito relatado *</label>
+
+                    <textarea
+                        id="defeito_relatado"
+                        name="defeito_relatado"
+                        rows="4"
+                        placeholder="Descreva o problema informado pelo cliente..."
+                        required
+                    >{{ request.form.get('defeito_relatado', '') }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="observacoes">Observações adicionais</label>
+
+                    <textarea
+                        id="observacoes"
+                        name="observacoes"
+                        rows="4"
+                        placeholder="Adicione informações complementares..."
+                    >{{ request.form.get('observacoes', '') }}</textarea>
+                </div>
+
+                <div class="form-actions">
+
+                    <a href="{{ url_for('listar_aparelhos') }}"
+                       class="btn-secondary">
+                        Cancelar
+                    </a>
+
+                    <button type="submit" class="btn-primary">
+                        Abrir Ordem de Serviço
+                    </button>
+
+                </div>
+
+            </form>
+
+        {% else %}
+
+            <div class="error-message">
+                Não existem aparelhos cadastrados.
+                Cadastre um aparelho antes de abrir uma ordem de serviço.
+            </div>
+
+            <a href="{{ url_for('cadastrar_aparelho') }}"
+               class="btn-primary">
+                Cadastrar aparelho
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

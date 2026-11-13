@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="cadastro">
+
+    <div class="page-header">
+        <div>
+            <h2>Editar aparelho</h2>
+            <p>Atualize as informações do equipamento cadastrado.</p>
+        </div>
+    </div>
+
+    <div class="form-container">
+
+        {% if erro %}
+            <div class="error-message">{{ erro }}</div>
+        {% endif %}
+
+        <form method="POST">
+
+            <div class="form-group">
+                <label for="id_cliente">Cliente responsável *</label>
+
+                <select id="id_cliente" name="id_cliente" required>
+                    {% for cliente in clientes %}
+                        <option
+                            value="{{ cliente.id_cliente }}"
+                            {% if request.form.get('id_cliente', aparelho.id_cliente|string) == cliente.id_cliente|string %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ cliente.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo de aparelho *</label>
+
+                <select id="tipo" name="tipo" required>
+                    {% for tipo in ['Notebook', 'Computador', 'Smartphone', 'Tablet', 'Outro'] %}
+                        <option
+                            value="{{ tipo }}"
+                            {% if request.form.get('tipo', aparelho.tipo) == tipo %}
+                                selected
+                            {% endif %}
+                        >
+                            {{ tipo }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="marca">Marca *</label>
+                <input
+                    type="text"
+                    id="marca"
+                    name="marca"
+                    value="{{ request.form.get('marca', aparelho.marca) }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="modelo">Modelo *</label>
+                <input
+                    type="text"
+                    id="modelo"
+                    name="modelo"
+                    value="{{ request.form.get('modelo', aparelho.modelo) }}"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="numero_serie">Número de série</label>
+                <input
+                    type="text"
+                    id="numero_serie"
+                    name="numero_serie"
+                    value="{{ request.form.get('numero_serie', aparelho.numero_serie or '') }}"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição adicional</label>
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                    rows="4"
+                >{{ request.form.get('descricao', aparelho.descricao or '') }}</textarea>
+            </div>
+
+            <div class="form-actions">
+                <a href="{{ url_for('listar_aparelhos') }}" class="btn-secondary">
+                    Cancelar
+                </a>
+
+                <button type="submit" class="btn-primary">
+                    Salvar alterações
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

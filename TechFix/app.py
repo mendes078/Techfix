@@ -91,8 +91,51 @@ def criar_tabelas():
 
 @app.route("/")
 def inicio():
-    return render_template("dashboard.html")
 
+    conexao = conectar_banco()
+
+    # Total de clientes cadastrados
+    total_clientes = conexao.execute("""
+        SELECT COUNT(*)
+        FROM clientes
+    """).fetchone()[0]
+
+    # Total de aparelhos cadastrados
+    total_aparelhos = conexao.execute("""
+        SELECT COUNT(*)
+        FROM aparelhos
+    """).fetchone()[0]
+
+    # Total de ordens de serviço
+    total_ordens = conexao.execute("""
+        SELECT COUNT(*)
+        FROM ordens_servico
+    """).fetchone()[0]
+
+    # Faturamento dos serviços concluídos ou entregues
+    faturamento = conexao.execute("""
+        SELECT COALESCE(SUM(valor_servico), 0)
+        FROM ordens_servico
+        WHERE status IN ('Concluído', 'Entregue')
+    """).fetchone()[0]
+
+    conexao.close()
+
+    # Formatação monetária brasileira
+    faturamento_formatado = (
+        f"R$ {faturamento:,.2f}"
+        .replace(",", "X")
+        .replace(".", ",")
+        .replace("X", ".")
+    )
+
+    return render_template(
+        "dashboard.html",
+        total_clientes=total_clientes,
+        total_aparelhos=total_aparelhos,
+        total_ordens=total_ordens,
+        faturamento=faturamento_formatado
+    )
 
 # ==========================================
 # ROTAS DE CLIENTES

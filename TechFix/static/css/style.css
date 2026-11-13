@@ -819,3 +819,314 @@ td {
     background-color: #482b30;
     color: #fca5a5;
 }
+
+
+/* ========================================
+   DETALHES DA ORDEM DE SERVIÇO
+======================================== */
+
+.os-details-page {
+    width: 100%;
+}
+
+/* Cabeçalho */
+
+.os-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Cartão de status */
+
+.os-status-card {
+    background-color: #252333;
+    border: 1px solid #39354d;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.os-section-label {
+    display: block;
+    color: #a78bfa;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.os-status-card h3 {
+    color: #f5f5f5;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Organização dos cartões */
+
+.os-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Cartões de informações */
+
+.os-info-card {
+    background-color: #252333;
+    border: 1px solid #39354d;
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 0;
+}
+
+/* Cartão de serviço ocupa a largura completa */
+
+.os-service-card {
+    grid-column: 1 / -1;
+}
+
+/* Cabeçalho dos cartões */
+
+.os-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #39354d;
+}
+
+.os-card-header h3 {
+    color: #f5f5f5;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.os-card-icon {
+    width: 38px;
+    height: 38px;
+    background-color: #3b2c5c;
+    color: #a78bfa;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Informações individuais */
+
+.os-info-item {
+    margin-bottom: 18px;
+}
+
+.os-info-item:last-child {
+    margin-bottom: 0;
+}
+
+.os-info-item span {
+    display: block;
+    color: #aaa6bb;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.os-info-item p {
+    color: #f5f5f5;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+/* Valor do serviço */
+
+.os-info-item .os-service-value {
+    color: #a78bfa;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+
+    .os-details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .os-service-card {
+        grid-column: auto;
+    }
+
+    .os-status-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .os-header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .os-info-card {
+        padding: 18px;
+    }
+
+    .os-status-card {
+        padding: 18px;
+    }
+
+}
+
+/* ========================================
+   REFINAMENTO VISUAL - PÁGINA DE CLIENTES
+======================================== */
+
+/* Botão de novo cliente */
+
+.clientes .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.clientes .btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+/* Área de pesquisa */
+
+.clientes .search-area {
+    position: relative;
+    max-width: 480px;
+    margin-bottom: 24px;
+}
+
+.clientes .search-area > i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #858195;
+    pointer-events: none;
+}
+
+.clientes .search-area input {
+    max-width: none;
+    padding: 13px 15px 13px 42px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.clientes .search-area input:focus {
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+/* Cabeçalho da tabela */
+
+.clientes table thead th {
+    white-space: nowrap;
+    padding: 18px 20px;
+}
+
+/* Linhas da tabela */
+
+.clientes table tbody tr {
+    transition: background-color 0.2s;
+}
+
+.clientes table tbody tr:hover {
+    background-color: #302d40;
+}
+
+.clientes table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Identificação do cliente */
+
+.client-id {
+    color: #a78bfa;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.client-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #f5f5f5;
+    font-weight: 600;
+}
+
+.client-name i {
+    color: #a78bfa;
+    font-size: 13px;
+}
+
+/* Botões de ação */
+
+.clientes .btn-edit,
+.clientes .btn-delete {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    white-space: nowrap;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.clientes .btn-edit:hover,
+.clientes .btn-delete:hover {
+    transform: translateY(-1px);
+}
+
+/* Mensagem de tabela vazia */
+
+.clientes .empty-message {
+    padding: 45px 20px;
+    text-align: center;
+}
+
+.clientes .empty-message i {
+    display: block;
+    font-size: 25px;
+    color: #a78bfa;
+    margin-bottom: 12px;
+}
+
+.clientes .empty-message p {
+    color: #858195;
+    font-size: 14px;
+}
+
+/* Responsividade */
+
+@media (max-width: 700px) {
+
+    .clientes .search-area {
+        max-width: 100%;
+    }
+
+    .clientes .table-container {
+        border-radius: 8px;
+    }
+
+    .clientes table th,
+    .clientes table td {
+        padding: 14px;
+        font-size: 13px;
+    }
+
+}

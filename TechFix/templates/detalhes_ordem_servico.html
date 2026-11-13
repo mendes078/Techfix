@@ -2,15 +2,16 @@
 
 {% block content %}
 
-<section class="form-section">
+<section class="os-details-page">
 
+    <!-- Cabeçalho -->
     <div class="page-header">
         <div>
             <h2>Ordem de Serviço #{{ ordem.id_os }}</h2>
-            <p>Detalhes completos do atendimento.</p>
+            <p>Visualização completa do atendimento.</p>
         </div>
 
-        <div class="form-actions">
+        <div class="os-header-actions">
             <a href="{{ url_for('listar_ordens_servico') }}"
                class="btn-secondary">
                 Voltar
@@ -23,6 +24,7 @@
         </div>
     </div>
 
+    <!-- Status -->
     {% set classes_status = {
         'Aguardando avaliação': 'status-pendente',
         'Em diagnóstico': 'status-diagnostico',
@@ -34,86 +36,121 @@
         'Cancelado': 'status-cancelado'
     } %}
 
-    <div class="form-container">
-
-        <div class="form-group">
-            <label>Status da ordem</label>
-            <p>
-                <span class="status-badge {{ classes_status.get(ordem.status, 'status-pendente') }}">
-                    {{ ordem.status }}
-                </span>
-            </p>
+    <div class="os-status-card">
+        <div>
+            <span class="os-section-label">STATUS ATUAL</span>
+            <h3>{{ ordem.status }}</h3>
         </div>
 
-        <h3>Informações do cliente</h3>
+        <span class="status-badge {{ classes_status.get(ordem.status, 'status-pendente') }}">
+            {{ ordem.status }}
+        </span>
+    </div>
 
-        <div class="form-group">
-            <label>Nome</label>
-            <p>{{ ordem.nome_cliente }}</p>
+    <!-- Cartões de informações -->
+    <div class="os-details-grid">
+
+        <!-- Cliente -->
+        <div class="os-info-card">
+
+            <div class="os-card-header">
+                <div class="os-card-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h3>Cliente</h3>
+            </div>
+
+            <div class="os-info-item">
+                <span>Nome</span>
+                <p>{{ ordem.nome_cliente }}</p>
+            </div>
+
+            <div class="os-info-item">
+                <span>Telefone</span>
+                <p>{{ ordem.telefone }}</p>
+            </div>
+
+            <div class="os-info-item">
+                <span>E-mail</span>
+                <p>{{ ordem.email or 'Não informado' }}</p>
+            </div>
+
         </div>
 
-        <div class="form-group">
-            <label>Telefone</label>
-            <p>{{ ordem.telefone }}</p>
+        <!-- Aparelho -->
+        <div class="os-info-card">
+
+            <div class="os-card-header">
+                <div class="os-card-icon">
+                    <i class="fa-solid fa-laptop"></i>
+                </div>
+                <h3>Aparelho</h3>
+            </div>
+
+            <div class="os-info-item">
+                <span>Tipo</span>
+                <p>{{ ordem.tipo }}</p>
+            </div>
+
+            <div class="os-info-item">
+                <span>Marca e modelo</span>
+                <p>{{ ordem.marca }} {{ ordem.modelo }}</p>
+            </div>
+
+            <div class="os-info-item">
+                <span>Número de série</span>
+                <p>{{ ordem.numero_serie or 'Não informado' }}</p>
+            </div>
+
+            <div class="os-info-item">
+                <span>Descrição</span>
+                <p>{{ ordem.descricao_aparelho or 'Não informado' }}</p>
+            </div>
+
         </div>
 
-        <div class="form-group">
-            <label>E-mail</label>
-            <p>{{ ordem.email or 'Não informado' }}</p>
-        </div>
+        <!-- Serviço -->
+        <div class="os-info-card os-service-card">
 
-        <h3>Informações do aparelho</h3>
+            <div class="os-card-header">
+                <div class="os-card-icon">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <h3>Informações do serviço</h3>
+            </div>
 
-        <div class="form-group">
-            <label>Tipo</label>
-            <p>{{ ordem.tipo }}</p>
-        </div>
+            <div class="os-info-item">
+                <span>Defeito relatado</span>
+                <p>{{ ordem.defeito_relatado }}</p>
+            </div>
 
-        <div class="form-group">
-            <label>Marca e modelo</label>
-            <p>{{ ordem.marca }} {{ ordem.modelo }}</p>
-        </div>
+            <div class="os-info-item">
+                <span>Diagnóstico técnico</span>
+                <p>{{ ordem.diagnostico or 'Ainda não informado' }}</p>
+            </div>
 
-        <div class="form-group">
-            <label>Número de série</label>
-            <p>{{ ordem.numero_serie or 'Não informado' }}</p>
-        </div>
+            <div class="os-info-item">
+                <span>Valor do serviço</span>
+                <p class="os-service-value">
+                    R$ {{ "%.2f"|format(ordem.valor_servico) }}
+                </p>
+            </div>
 
-        <div class="form-group">
-            <label>Descrição do aparelho</label>
-            <p>{{ ordem.descricao_aparelho or 'Não informado' }}</p>
-        </div>
+            <div class="os-info-item">
+                <span>Data de abertura</span>
+                <p>{{ ordem.data_abertura }}</p>
+            </div>
 
-        <h3>Informações do serviço</h3>
+            <div class="os-info-item">
+                <span>Data de conclusão</span>
+                <p>{{ ordem.data_conclusao or 'Ainda não concluído' }}</p>
+            </div>
 
-        <div class="form-group">
-            <label>Defeito relatado</label>
-            <p>{{ ordem.defeito_relatado }}</p>
-        </div>
+            <div class="os-info-item">
+                <span>Observações</span>
+                <p>{{ ordem.observacoes or 'Nenhuma observação registrada.' }}</p>
+            </div>
 
-        <div class="form-group">
-            <label>Diagnóstico técnico</label>
-            <p>{{ ordem.diagnostico or 'Ainda não informado' }}</p>
-        </div>
-
-        <div class="form-group">
-            <label>Valor do serviço</label>
-            <p>R$ {{ "%.2f"|format(ordem.valor_servico) }}</p>
-        </div>
-
-        <div class="form-group">
-            <label>Data de abertura</label>
-            <p>{{ ordem.data_abertura }}</p>
-        </div>
-
-        <div class="form-group">
-            <label>Data de conclusão</label>
-            <p>{{ ordem.data_conclusao or 'Ainda não concluído' }}</p>
-        </div>
-
-        <div class="form-group">
-            <label>Observações</label>
-            <p>{{ ordem.observacoes or 'Nenhuma observação registrada.' }}</p>
         </div>
 
     </div>

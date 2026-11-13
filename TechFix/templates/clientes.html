@@ -4,25 +4,35 @@
 
 <section class="clientes">
 
+    <!-- Cabeçalho da página -->
     <div class="page-header">
+
         <div>
             <h2>Clientes</h2>
             <p>Gerencie os clientes cadastrados na assistência técnica.</p>
         </div>
 
         <a href="{{ url_for('cadastrar_cliente') }}" class="btn-primary">
-            + Novo cliente
+            <i class="fa-solid fa-plus"></i>
+            Novo cliente
         </a>
+
     </div>
 
+    <!-- Área de pesquisa -->
     <div class="search-area">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
         <input
             type="text"
             id="pesquisaCliente"
-            placeholder="Pesquisar cliente..."
+            placeholder="Pesquisar por nome, telefone ou e-mail..."
         >
+
     </div>
 
+    <!-- Tabela de clientes -->
     <div class="table-container">
 
         <table>
@@ -42,30 +52,56 @@
                 {% for cliente in clientes %}
 
                     <tr>
-                        <td>{{ cliente.id_cliente }}</td>
-                        <td>{{ cliente.nome }}</td>
+
+                        <td>
+                            <span class="client-id">
+                                #{{ cliente.id_cliente }}
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="client-name">
+                                <i class="fa-solid fa-user"></i>
+                                {{ cliente.nome }}
+                            </div>
+                        </td>
+
                         <td>{{ cliente.telefone }}</td>
+
                         <td>{{ cliente.email or '-' }}</td>
 
-                        <td class="table-actions">
+                    <td>
+                        <div class="table-actions">
 
-                        <a
-                            href="{{ url_for('editar_cliente', id_cliente=cliente.id_cliente) }}"
-                            class="btn-edit"
-                        >
-                        Editar
-                        </a>
+                            <!-- Editar cliente -->
+                            <a
+                                href="{{ url_for('editar_cliente', id_cliente=cliente.id_cliente) }}"
+                                class="btn-edit"
+                                title="Editar cliente"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                                Editar
+                            </a>
 
-                        <form
-                            action="{{ url_for('excluir_cliente', id_cliente=cliente.id_cliente) }}"
-                            method="POST"
-                            onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');"
-                        >
-                        <button type="submit" class="btn-delete">
-                        Excluir
-                        </button>
-                        </form>
-</td>
+                            <!-- Excluir cliente -->
+                            <form
+                                action="{{ url_for('excluir_cliente', id_cliente=cliente.id_cliente) }}"
+                                method="POST"
+                                onsubmit="return confirm('Tem certeza que deseja excluir este cliente?');"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="btn-delete"
+                                    title="Excluir cliente"
+                                >
+                                    <i class="fa-solid fa-trash"></i>
+                                    Excluir
+                                </button>
+
+                            </form>
+                        </div>
+                    </td>
 
                     </tr>
 
@@ -73,7 +109,8 @@
 
                     <tr>
                         <td colspan="5" class="empty-message">
-                            Nenhum cliente cadastrado.
+                            <i class="fa-solid fa-users"></i>
+                            <p>Nenhum cliente cadastrado.</p>
                         </td>
                     </tr>
 

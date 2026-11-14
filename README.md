@@ -78,14 +78,18 @@ TechFix/
 
 ## Como executar o projeto
 
-### 1. Pré-requisitos
+Existem duas maneiras de utilizar o TechFix: executando o código-fonte em ambiente de desenvolvimento ou instalando a versão desktop já preparada para Windows.
+
+### Opção 1 — Executar pelo código-fonte
+
+#### 1. Pré-requisitos
 
 Para executar o projeto em ambiente de desenvolvimento, é necessário ter:
 
 - Python instalado.
 - Git (opcional, para clonar o repositório).
 
-### 2. Clonar o repositório
+#### 2. Clonar o repositório
 
 ```bash
 git clone URL_DO_REPOSITORIO
@@ -97,13 +101,13 @@ Acesse a pasta do projeto:
 cd TechFix
 ```
 
-### 3. Instalar as dependências
+#### 3. Instalar as dependências
 
 ```bash
 python -m pip install flask pywebview
 ```
 
-### 4. Executar a aplicação
+#### 4. Executar a aplicação
 
 ```bash
 python desktop.py
@@ -111,16 +115,20 @@ python desktop.py
 
 Após a execução, o sistema será aberto em uma janela desktop.
 
-## Distribuição
+### Opção 2 — Baixar e instalar pelo GitHub
 
-O TechFix também foi preparado para funcionar como uma aplicação independente no Windows.
+Caso a opção de clonar o repositório não funcione ou o usuário não tenha familiaridade com Git e Python, também é possível utilizar a versão já empacotada do TechFix.
 
-Para isso, foram utilizadas as seguintes ferramentas:
+Para isso:
 
-- **PyInstaller:** responsável por empacotar a aplicação e suas dependências em uma estrutura executável.
-- **Inno Setup:** utilizado para criar um instalador, permitindo a instalação do TechFix no computador e a criação de atalhos para acesso ao programa.
+1. Acesse o repositório do projeto no GitHub.
+2. Faça o download dos arquivos do projeto, utilizando a opção **Code → Download ZIP**, ou acesse a seção de arquivos disponibilizados para download, caso exista.
+3. Extraia o arquivo ZIP, se necessário.
+4. Localize o instalador `TechFix-Setup.exe`.
+5. Execute o instalador e siga as instruções apresentadas.
+6. Após a instalação, abra o TechFix pelo atalho criado na área de trabalho ou pelo menu Iniciar.
 
-Dessa forma, o usuário pode utilizar o sistema sem precisar executar manualmente os arquivos Python.
+**Observação:** nessa segunda opção, não é necessário instalar Python, Git ou as dependências utilizadas no desenvolvimento. O instalador já contém os arquivos necessários para executar a aplicação no Windows.
 
 ## Banco de dados
 
